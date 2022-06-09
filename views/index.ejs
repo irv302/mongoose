@@ -10,11 +10,11 @@
     <nav><a href="/products/new">Add NEW Product</a></nav>
     <h1>PRODUCT</h1>
     <ul>
-      <% product.forEach(product => { %>
+      <% product.forEach(Product => { %>
       <li>
-        <a href="/products/<%=product._id%>"><%=product.name%></a>
-        <a href="/products/<%=product._id%>">/edit<button>Edit</button></a>
-        <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+        <a href="/products/<%=Product._id%>"><%=product.name%></a>
+        <a href="/products/<%=Product._id%>">/edit<button>Edit</button></a>
+        <form action="/products/<%=Product._id%>?_method=DELETE" method="POST">
           <input type="submit" value="DELETE" />
         </form>
       </li>
