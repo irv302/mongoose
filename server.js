@@ -1,7 +1,7 @@
 const express = require("express");
 const res = require("express/lib/response");
 const app = express();
-require("dotenv").config();
+const dotenv = require("dotenv").config();
 const PORT = 3000;
 const methodOverride = require("method-override");
 
