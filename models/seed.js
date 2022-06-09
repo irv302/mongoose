@@ -1,4 +1,4 @@
-
+module.exports =
     [
         {
           name: 'Beans',
@@ -20,3 +20,5 @@
           qty: 1
         }
       ]
+
+      

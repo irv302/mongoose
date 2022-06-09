@@ -5,12 +5,16 @@ const dotenv = require("dotenv").config();
 const PORT = 3000;
 const methodOverride = require("method-override");
 
+const productSeed = require("./models/seed");
+
+
 const mongoose = require("mongoose");
 const Product = require("./models/products");
 mongoose.connect(process.env.DATABASE_URI, {
   // useNewUriParser: true,
   useUnifiedTopology: true,
 });
+
 
 const db = mongoose.connection;
 db.on("error", (err) => console.log(`${err.message}   is mongo not running?`));
@@ -21,17 +25,18 @@ app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
-const productSeed = require("./models/seed");
 app.get("/products/seed", (req, res) => {
-  Product.create(productSeed),
-    (error, createdProductSeed) => {
+Product.deleteMany({}, (error, allProducts) => {});
+  Product.create(productSeed, (error, createdProductSeed) => {
       res.redirect("/products");
-    };
+    });
 });
+
 
 //Index
 app.get("/products", (req, res) => {
   Product.find({}, (error, allProducts) => {
+      console.log("all products", allProducts)
     res.render("index.ejs", { product: allProducts });
   });
 });
@@ -41,10 +46,13 @@ app.get("/products/new", (req, res) => {
 });
 //create
 app.post("/products", (req, res) => {
-  Product.create(req.body),
-    (error, createdProduct) => {
+  Product.create(req.body,
+   (error, createdProduct) => {
+    console.log(req.body,"open")
       res.redirect("/products");
-    };
+
+      
+  });
 });
 //show
 app.get("/products/:id", (req, res) => {
@@ -63,7 +71,7 @@ app.get("/products/:id/edit", (req, res) => {
   });
 });
 //Delete
-app.delete("/producs/:id", (req, res) => {
+app.delete("/products/:id", (req, res) => {
   Product.findByIdAndDelete(req.params.id, (err, data) => {
     res.redirect("/products");
   });
@@ -82,7 +90,7 @@ app.put("/products/:id", (req, res) => {
   );
 });
 //Buy
-app.post("/products/:id/buy", (req, res) => {
+app.put("/products/:id/buy", (req, res) => {
   Product.findById(req.params.id, (error, data) => {
     if (data.qty === 0) {
     } else {
