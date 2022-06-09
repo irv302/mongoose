@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/product">Back to Index Page</a>
+    <h1><%=product.name%></h1>
+    <p>Description: <%=product.description%></p>
+    <img src=""<%=product.img%>" width=200px" height="auto" />
+    <h3>Price: <%=product.price%></h3>
+    <p>
+        <% if (product.qty > 0) { %>
+        Quantity: <%=product.qty%>
+    <form action="/products/<%=product._id%>/buy" method="POST"
+    <input type="submit" value="Buy" />
+    </form>
+<% } else { %> 
+OUT OF STOCK
+<% } %>
+    </p>
+</body>
+</html>
