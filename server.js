@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 
 const mongoose = require("mongoose");
 const Product = require("./models/products");
-mongoose.connect(process.env.DTABASE_URL, {
+mongoose.connect(process.env.DTABASE_URI, {
     // useNewUriParser: true,
     useUnifiedTopology: true,
 });
