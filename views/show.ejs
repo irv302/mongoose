@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style >
+body{
+    background: red
+}
+</style>
 <body>
     <a href="/products">Back to Index Page</a>
     <h1><%=product.name%></h1>
+    <img src="<%=product.img%>"/>
     <p>Description: <%=product.description%></p>
     <img src=""<%=product.img%>" width=200px" height="auto" />
     <h3>Price: <%=product.price%></h3>
